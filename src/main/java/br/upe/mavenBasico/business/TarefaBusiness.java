@@ -4,7 +4,7 @@ import br.upe.mavenBasico.data.beans.Tarefa;
 import br.upe.mavenBasico.data.repository.interfaces.ITarefas;
 
 public class TarefaBusiness {
-    private ITarefas repositorio;
+    private static ITarefas repositorio;
 
     public TarefaBusiness(ITarefas repositorio) {
         this.repositorio = repositorio;
@@ -46,5 +46,14 @@ public class TarefaBusiness {
 
     public boolean verificaExistente(String nome) {
         return repositorio.retrieve(nome) != null;
+    }
+
+    public static void chamarEscritor(){
+        ManipuladorArquivo.arquivarTarefas(repositorio.listarTodas());
+    }
+
+    public boolean atualizar(Tarefa t){
+      //  Tarefa t = new Tarefa(nomeAntigo, novaPrioridade);
+        return repositorio.update(t);
     }
 }

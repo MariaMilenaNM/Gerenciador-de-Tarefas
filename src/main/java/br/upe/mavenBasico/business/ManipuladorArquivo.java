@@ -5,7 +5,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.upe.mavenBasico.data.repository.RepositorioTarefa;
+
 public class ManipuladorArquivo {
+    private static RepositorioTarefa RepositorioTarefa;
     private static final String caminho = "tarefas.txt";
 
     public static void arquivarTarefas(List<Tarefa> tarefas){
@@ -23,6 +26,7 @@ public class ManipuladorArquivo {
             System.out.println("Erro ao salvar tarefas: " + e.getMessage());
         }
     }
+
 
     public static List<Tarefa> lerTarefas(){
         List<Tarefa> tarefas = new ArrayList<>();

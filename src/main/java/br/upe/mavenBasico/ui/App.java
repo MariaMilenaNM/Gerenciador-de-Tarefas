@@ -17,7 +17,7 @@ public class App {
         RepositorioTarefa = new RepositorioTarefa();
         TarefaBusiness = new TarefaBusiness(RepositorioTarefa);
         for (Tarefa t : ManipuladorArquivo.lerTarefas()) {
-            RepositorioTarefa.create(t.getNome(), t.getPrioridade());
+            TarefaBusiness.criaNova(t.getNome(), t.getPrioridade());
         }
 
         int opcao = 1;
@@ -35,7 +35,7 @@ public class App {
                         int prioridade = sc.nextInt();
                         sc.nextLine();
                         TarefaBusiness.criaNova(nome, prioridade);
-                        ManipuladorArquivo.arquivarTarefas(RepositorioTarefa.listarTodas());
+                        TarefaBusiness.chamarEscritor();
                         break;
                     case 2:
                         //Aqui vou querer listar tds as tarefas e unitário
@@ -60,17 +60,17 @@ public class App {
                         sc.nextLine();
 
                         Tarefa tAtualizada = new Tarefa(nomeAntigo, novaPrioridade);
-                        RepositorioTarefa.update(tAtualizada);
-                        ManipuladorArquivo.arquivarTarefas(RepositorioTarefa.listarTodas());
+                        TarefaBusiness.atualizar(tAtualizada);
+                        TarefaBusiness.chamarEscritor();
                         break;
                     case 4:
                         System.out.println("Diga o nome da tarefa que quer deletar");
                         String deletarTarefa = sc.nextLine();
                         RepositorioTarefa.delete(deletarTarefa);
-                        ManipuladorArquivo.arquivarTarefas(RepositorioTarefa.listarTodas());
+                        TarefaBusiness.chamarEscritor();
                         break;
                     case 0:
-                        ManipuladorArquivo.arquivarTarefas(RepositorioTarefa.listarTodas());
+                        TarefaBusiness.chamarEscritor();
                         System.out.println("Saindo...");
                         break;
                     default:
